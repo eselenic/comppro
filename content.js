@@ -8,10 +8,25 @@ for (var i = 0; i < elements.length; i++) {
 
         if (node.nodeType === 3) {
             var text = node.nodeValue;
-            var replacedText = text.replace(/[word or phrase to replace here]/gi, '[new word or phrase]');
+            var oldWord = 'impeachment';
 
-            if (replacedText !== text) {
-                element.replaceChild(document.createTextNode(replacedText), node);
+            fetch('examples/example.json')
+                .then(function(response) {
+                    if (!response.ok) {
+                    throw Error(response.statusText);
+                    }
+                    // Read the response as json.
+                    return response.json();
+                }) .then(function(responseAsJson) {
+                    var newWord = responseAsJson.word;
+                    var replacedText = text.replace(/[${oldWord}]/gi, '[${newWord}]');
+
+                    if (replacedText !== text) {
+                        element.replaceChild(document.createTextNode(replacedText), node);
+                    }
+                }) .catch(function(error) {
+                    console.log('Looks like there was a problem: \n', error);
+                });
             }
         }
     }
