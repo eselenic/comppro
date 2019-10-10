@@ -12,6 +12,7 @@ for (var i = 0; i < elements.length; i++) {
             fetch('https://api.datamuse.com/words?ml=${oldWord}')
                 .then(function(response) {
                     var newWord = response.word;
+                    console.log(newWord);
 
                     var replacedText = text.replace(/[${oldWord}]/gi, '[${newWord}]');
                     if (replacedText !== text) {
