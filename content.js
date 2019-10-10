@@ -13,15 +13,12 @@ for (var i = 0; i < elements.length; i++) {
                 .then(function(response) {
                     var newWord = response.word;
                     console.log(newWord);
-
-                    var replacedText = text.replace(/[${oldWord}]/gi, '[${newWord}]');
                     if (replacedText !== text) {
                         element.replaceChild(document.createTextNode(replacedText), node);
                     }
-                })
-                .catch(function(error) {
-                console.log('Looks like there was a problem: \n', error);
-                });              
+                }).catch(function(error) {
+                    console.log('Looks like there was a problem: \n', error);
+                });          
         }
     }
 }
