@@ -9,25 +9,18 @@ for (var i = 0; i < elements.length; i++) {
         if (node.nodeType === 3) {
             var text = node.nodeValue;
             var oldWord = 'impeachment';
-
-            fetch('examples/example.json')
+            fetch('https://api.datamuse.com/words?ml=${oldWord}')
                 .then(function(response) {
-                    if (!response.ok) {
-                    throw Error(response.statusText);
-                    }
-                    // Read the response as json.
-                    return response.json();
-                }) .then(function(responseAsJson) {
-                    var newWord = responseAsJson.word;
-                    var replacedText = text.replace(/[${oldWord}]/gi, '[${newWord}]');
+                    var newWord = response.word;
 
+                    var replacedText = text.replace(/[${oldWord}]/gi, '[${newWord}]');
                     if (replacedText !== text) {
                         element.replaceChild(document.createTextNode(replacedText), node);
                     }
-                }) .catch(function(error) {
-                    console.log('Looks like there was a problem: \n', error);
-                });
-            }
+                })
+                .catch(function(error) {
+                console.log('Looks like there was a problem: \n', error);
+                });              
         }
     }
 }
