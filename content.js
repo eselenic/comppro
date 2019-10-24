@@ -16,16 +16,21 @@ for (var i = 0; i < elements.length; i++) {
     }
 }
 
+console.log(`BEFORE CALL: ${newWord}`);
+
 // API call to get synonyms for words to replace
 for (var i = 0; i < 1; i++){
-    fetch('https://api.datamuse.com/words?ml=impeachment')
-        .then(function(response) {
-            newWord = response[0].word;
-            console.log(newWord);
-        }).catch(function(error) {
-            console.log('Looks like there was a problem: \n', error);
-        });
+    const request = async () => {
+        const response = await fetch(`https://api.datamuse.com/words?ml=impeachment`);
+        const json = await response.json();
+        console.log(json);
+        newWord = json[0].word;
+        console.log(newWord);
+    }
+    request();
 }
+
+console.log(`AFTER CALL: ${newWord}`)
 
 // Actually replace all words
 for (var i = 0; i < elements.length; i++) {
@@ -40,7 +45,7 @@ for (var i = 0; i < elements.length; i++) {
             if (replacedText !== text) {
                 element.replaceChild(document.createTextNode(replacedText), node);
             }
-                      
+                    
         }
     }
 }
