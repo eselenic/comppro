@@ -1,17 +1,11 @@
 {
 "manifest_version": 2,
-<<<<<<< HEAD
     "name": "Comp Pro",
     "description": "A chrome extension that processes different articles to change the comprehension level.",
-    "version": "1.03",
+    "version": "1.06",
     "permissions": [
         "https://api.datamuse.com/*"
     ],
-=======
-    "name": "[your extension name here]",
-    "description": "[your extension description here]",
-    "version": "1.0",
->>>>>>> bf44fc272509b6abb0e14a5dee35baf0376a23ab
     "content_scripts": [
         {
             "matches": [
