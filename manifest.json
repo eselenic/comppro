@@ -2,7 +2,7 @@
 "manifest_version": 2,
     "name": "Comp Pro",
     "description": "A chrome extension that processes different articles to change the comprehension level.",
-    "version": "1.10.09",
+    "version": "1.10.10",
     "permissions": [
         "https://api.datamuse.com/*"
     ],
